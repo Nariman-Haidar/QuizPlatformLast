@@ -1,71 +1,27 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
-
-# Spring Boot configuration files
+# Ignore sensitive config files
 application.yml
-application.properties
 application-*.yml
-application-*.properties
-
-# Docker Compose files
 docker-compose.yml
 docker-compose.yaml
 
-# IDE and editor files
-.idea/
-*.iml
-.vscode/
+# Ignore build outputs
+/target/
+/build/
+/dist/
 
-# Maven build output
-target/
+# Ignore IDE settings
+/.idea/
+/.vscode/
+/*.iml
+*.ipr
+*.iws
+.sts4-cache
+*.class
 *.log
 
-# Maven wrapper
-.mvn/
-mvnw
-mvnw.cmd
-
-# Environment files
+# Ignore environment files
 .env
 *.env
 
-# Sensitive directories
-secrets/
-
-# IntelliJ IDEA
-*.ipr
-*.iws
-
-# Root src directory (if unused)
-src/
+# Ignore sensitive directories
+/secrets/
