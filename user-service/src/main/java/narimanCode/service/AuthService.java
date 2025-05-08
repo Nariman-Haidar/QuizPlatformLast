@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import narimanCode.dto.AuthRequest;
 import narimanCode.dto.AuthResponse;
+import narimanCode.dto.JwtValidationResponse;
 import narimanCode.dto.PasswordResetRequest;
 import narimanCode.dto.RegistrationDTO;
 import narimanCode.entity.Person;
@@ -22,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -168,5 +170,67 @@ public class AuthService {
 
         passwordResetService.invalidateToken(request.getToken());
         log.info("Password reset successful for user: {}", person.getUsername());
+    }
+
+    public JwtValidationResponse validateToken(String token) {
+        log.info("Validating JWT token");
+        
+        if (token == null || token.isEmpty()) {
+            log.warn("Token validation failed: Token is null or empty");
+            return JwtValidationResponse.builder()
+                    .valid(false)
+                    .error("Token is null or empty")
+                    .build();
+        }
+        
+        if (tokenBlacklistService.isTokenBlacklisted(token)) {
+            log.warn("Token validation failed: Token is blacklisted");
+            return JwtValidationResponse.builder()
+                    .valid(false)
+                    .error("Token is blacklisted")
+                    .build();
+        }
+        
+        try {
+            if (!jwtTokenProvider.validateToken(token)) {
+                log.warn("Token validation failed: Invalid token format or signature");
+                return JwtValidationResponse.builder()
+                        .valid(false)
+                        .error("Invalid token format or signature")
+                        .build();
+            }
+            
+            String username = jwtTokenProvider.getUsernameFromToken(token);
+            Person person = personRepository.findByUsername(username)
+                    .orElse(null);
+                    
+            if (person == null) {
+                log.warn("Token validation failed: User not found for token");
+                return JwtValidationResponse.builder()
+                        .valid(false)
+                        .error("User not found")
+                        .build();
+            }
+            
+            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            List<String> roles = userDetails.getAuthorities().stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .collect(Collectors.toList());
+            
+            log.info("Token validated successfully for user: {}", username);
+            return JwtValidationResponse.builder()
+                    .valid(true)
+                    .username(username)
+                    .userId(person.getId())
+                    .roles(roles)
+                    .build();
+            
+        } catch (Exception e) {
+            log.error("Token validation error: {}", e.getMessage());
+            return JwtValidationResponse.builder()
+                    .valid(false)
+                    .error("Token validation error: " + e.getMessage())
+                    .build();
+        }
     }
 }

@@ -69,4 +69,13 @@ public class AuthController {
                 .contentType(MediaType.TEXT_PLAIN)
                 .body("Successfully logged out.");
     }
+    
+    @GetMapping("/validate")
+    public ResponseEntity<JwtValidationResponse> validateToken(HttpServletRequest request) {
+        String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+        String token = authHeader != null && authHeader.startsWith("Bearer ") ? authHeader.substring(7) : null;
+        
+        JwtValidationResponse response = authService.validateToken(token);
+        return ResponseEntity.ok(response);
+    }
 }
