@@ -26,6 +26,8 @@ C:\Users\narim\LexiconJava\Weeks18,19,20\quiz-platform\user-service\src\main\jav
 C:\Users\narim\LexiconJava\Weeks18,19,20\quiz-platform\user-service\src\main\java\narimanCode\exception\ResourceNotFoundException.java
 C:\Users\narim\LexiconJava\Weeks18,19,20\quiz-platform\user-service\src\main\java\narimanCode\entity\Role.java
 C:\Users\narim\LexiconJava\Weeks18,19,20\quiz-platform\user-service\src\main\java\narimanCode\service\AuthService.java
+C:\Users\narim\LexiconJava\Weeks18,19,20\quiz-platform\user-service\src\main\java\narimanCode\dto\ResetPasswordRequest.java
 C:\Users\narim\LexiconJava\Weeks18,19,20\quiz-platform\user-service\src\main\java\narimanCode\exception\GlobalExceptionHandler.java
 C:\Users\narim\LexiconJava\Weeks18,19,20\quiz-platform\user-service\src\main\java\narimanCode\entity\PasswordResetToken.java
 C:\Users\narim\LexiconJava\Weeks18,19,20\quiz-platform\user-service\src\main\java\narimanCode\config\RepositoryConfig.java
+C:\Users\narim\LexiconJava\Weeks18,19,20\quiz-platform\user-service\src\main\java\narimanCode\dto\JwtValidationResponse.java
