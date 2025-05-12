@@ -3,6 +3,7 @@ narimanCode\repository\RoleRepository.class
 narimanCode\service\AuthService.class
 narimanCode\dto\AuthResponse.class
 narimanCode\dto\ErrorResponse$ValidationError.class
+narimanCode\dto\ResetPasswordRequest.class
 narimanCode\entity\PasswordResetToken.class
 narimanCode\service\PersonService.class
 narimanCode\config\RedisConfig.class
@@ -17,9 +18,11 @@ narimanCode\dto\AuthResponse$AuthResponseBuilder.class
 narimanCode\exception\ResourceNotFoundException.class
 narimanCode\service\PasswordResetService.class
 narimanCode\dto\ErrorResponse.class
+narimanCode\dto\JwtValidationResponse.class
 narimanCode\config\SecurityConfig.class
 narimanCode\exception\RepositoryException.class
 narimanCode\config\RepositoryConfig.class
+narimanCode\dto\JwtValidationResponse$JwtValidationResponseBuilder.class
 narimanCode\config\KafkaConfig.class
 narimanCode\dto\AuthRequest.class
 narimanCode\dto\RegistrationDTO.class
