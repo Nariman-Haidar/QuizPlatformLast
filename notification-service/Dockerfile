@@ -6,7 +6,7 @@ COPY notification-service/src ./src
 # Build from the directory with the pom.xml
 RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:21-jdk
+FROM eclipse-temurin:21-jdk-slim
 WORKDIR /app
 COPY --from=build /app/target/notification-service-1.0-SNAPSHOT.jar notification-service.jar
 EXPOSE 8083
