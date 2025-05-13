@@ -1,13 +1,15 @@
 # Build stage
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-RUN mvn -pl notification-service -am clean package -DskipTests
+# Copy service pom.xml and src
+COPY notification-service/pom.xml .
+COPY notification-service/src ./src
+# Build from the directory with the pom.xml
+RUN mvn clean package -DskipTests
 
 # Runtime stage
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jdk-slim
 WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /app/target/notification-service-1.0-SNAPSHOT.jar notification-service.jar
 EXPOSE 8083
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "notification-service.jar"]
