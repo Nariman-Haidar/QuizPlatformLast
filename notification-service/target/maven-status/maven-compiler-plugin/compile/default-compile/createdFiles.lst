@@ -1,0 +1,8 @@
+narimanCode\service\UserServiceClient.class
+narimanCode\model\Notification.class
+narimanCode\service\NotificationService.class
+narimanCode\service\EmailService.class
+narimanCode\NotificationServiceApplication.class
+narimanCode\repository\NotificationRepository.class
+narimanCode\dto\QuizCompletedEvent.class
+narimanCode\config\KafkaConsumer.class
